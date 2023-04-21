@@ -3,6 +3,8 @@ import * as d3 from "d3";
 import { governance } from "../data/governance";
 
 // https://observablehq.com/@d3/zoomable-circle-packing
+// https://www.influxdata.com/blog/guide-d3js-react/
+// https://blog.logrocket.com/getting-started-d3-js-react/
 
 const OrgChart = () => {
   const [data, setData] = useState(governance);
