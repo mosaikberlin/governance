@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import * as d3 from "d3";
 import { governance } from "../data/governance";
 
+// https://observablehq.com/@d3/zoomable-circle-packing
+
 const OrgChart = () => {
   const [data, setData] = useState(governance);
 
