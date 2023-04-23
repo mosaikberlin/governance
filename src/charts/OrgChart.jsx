@@ -21,7 +21,7 @@ const OrgChart = () => {
       .sum(d => d.value)
       .sort((a, b) => b.value - a.value));
   const root = pack(governance);
-  const [focus, null] = useState(root);
+  const [focus, ...rest] = useState(root);
       
   useEffect(() => {
     // let view;
