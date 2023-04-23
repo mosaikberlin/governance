@@ -10,7 +10,7 @@ const width = 800;
 const height = 800;
 
 const OrgChart = () => {
-  const format = d3.format(",d")
+  d3.format(",d")
   const color = d3.scaleLinear()
     .domain([0, 5])
     .range(["hsl(152,80%,80%)", "hsl(228,30%,40%)"])
@@ -21,10 +21,10 @@ const OrgChart = () => {
       .sum(d => d.value)
       .sort((a, b) => b.value - a.value));
   const root = pack(governance);
-  const [focus, setFocus] = useState(root);
+  const [focus, null] = useState(root);
       
   useEffect(() => {
-    let view;
+    // let view;
   
     const svg = d3.create("svg")
         .attr("viewBox", `-${width / 2} -${height / 2} ${width} ${height}`)
@@ -60,7 +60,7 @@ const OrgChart = () => {
     function zoomTo(v) {
       const k = width / v[2];
   
-      view = v;
+      // view = v;
   
       label.attr("transform", d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
       node.attr("transform", d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
@@ -90,7 +90,7 @@ const OrgChart = () => {
     */
   
     return svg.node();
-  }, [focus]);
+  }, [focus, color, root]);
 
   return ;
 };
