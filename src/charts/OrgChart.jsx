@@ -32,7 +32,7 @@ const OrgChart = () => {
         .style("margin", "0 -14px")
         .style("background", color(0))
         .style("cursor", "pointer")
-        .on("click", (event) => zoom(event, root));
+        // .on("click", (event) => zoom(event, root));
   
     const node = svg.append("g")
       .selectAll("circle")
@@ -90,7 +90,7 @@ const OrgChart = () => {
     */
   
     return svg.node();
-  }, [data]);
+  }, [focus]);
 
   return ;
 };
