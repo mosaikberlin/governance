@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import * as d3 from "d3";
 import { governance } from "../data/governance";
 
@@ -6,27 +6,24 @@ import { governance } from "../data/governance";
 // https://www.influxdata.com/blog/guide-d3js-react/
 // https://blog.logrocket.com/getting-started-d3-js-react/
 
+const width = 800;
+const height = 800;
+
 const OrgChart = () => {
-  const [data, setData] = useState(governance);
-
+  const format = d3.format(",d")
+  const color = d3.scaleLinear()
+    .domain([0, 5])
+    .range(["hsl(152,80%,80%)", "hsl(228,30%,40%)"])
+    .interpolate(d3.interpolateHcl);
+  const pack = data => d3.pack()
+    .size([width, height])
+    .padding(3)(d3.hierarchy(data)
+      .sum(d => d.value)
+      .sort((a, b) => b.value - a.value));
+  const root = pack(governance);
+  const [focus, setFocus] = useState(root);
+      
   useEffect(() => {
-    const width = 800;
-    const height = 800;
-
-    const color = d3.scaleLinear()
-      .domain([0, 5])
-      .range(["hsl(152,80%,80%)", "hsl(228,30%,40%)"])
-      .interpolate(d3.interpolateHcl);
-
-    const pack = data => d3.pack()
-      .size([width, height])
-      .padding(3)(d3.hierarchy(data)
-        .sum(d => d.value)
-        .sort((a, b) => b.value - a.value));
-
-
-    const root = pack(data);
-    let focus = root;
     let view;
   
     const svg = d3.create("svg")
@@ -45,7 +42,7 @@ const OrgChart = () => {
         .attr("pointer-events", d => !d.children ? "none" : null)
         .on("mouseover", function() { d3.select(this).attr("stroke", "#000"); })
         .on("mouseout", function() { d3.select(this).attr("stroke", null); })
-        .on("click", (event, d) => focus !== d && (zoom(event, d), event.stopPropagation()));
+        // .on("click", (event, d) => focus !== d && (zoom(event, d), event.stopPropagation()));
   
     const label = svg.append("g")
       .style("font", "10px sans-serif")
@@ -69,7 +66,8 @@ const OrgChart = () => {
       node.attr("transform", d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
       node.attr("r", d => d.r * k);
     }
-  
+
+    /**
     function zoom(event, d) {
       const focus0 = focus;
   
@@ -89,6 +87,7 @@ const OrgChart = () => {
           .on("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
           .on("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
     }
+    */
   
     return svg.node();
   }, [data]);
