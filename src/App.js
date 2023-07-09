@@ -7,6 +7,7 @@ const App = () => (
     <div>Hallo Welt</div>
     <div id="org-chart-d3">
       <BarChart
+        wrapperId={"#org-chart-d3"}
         data={[12, 5, 6, 6, 9, 10]}
         width={700}
         height={300}/>
