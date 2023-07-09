@@ -15,6 +15,10 @@ class BarChart extends Component {
         const barWidth = width / data.length;
         const valueRange = Math.max(data) - Math.min(data, 0);
         const heightPerPoint = height / valueRange;
+        this.width = width;
+        this.height = height;
+        this.barWidth = barWidth;
+        this.heightPerPoint = heightPerPoint;
 
         //const svg = d3.select("#org-chart-d3")
         const svg = d3.select(wrapperId)
@@ -37,10 +41,10 @@ class BarChart extends Component {
 
     render() {
         return <div id={"#" + this.props.id}>
-            width = { width }<br/>
-            height = { height }<br/>
-            barWidth = { barWidth }<br/>
-            heightPerPoint = { heightPerPoint }<br/>
+            width = { this.width }<br/>
+            height = { this.height }<br/>
+            barWidth = { this.barWidth }<br/>
+            heightPerPoint = { this.heightPerPoint }<br/>
         </div>
     }
 }
