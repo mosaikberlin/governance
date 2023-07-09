@@ -1,6 +1,6 @@
 import './App.css';
 // import OrgChart from './charts/OrgChart';
-import { BarChart } from "./charts/BarChart";
+import BarChart from "./charts/BarChart";
 
 const App = () => (
   <BarChart />
