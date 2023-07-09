@@ -7,18 +7,13 @@ class BarChart extends Component {
     }
 
     drawChart() {
-        //const { data, width, height } = this.props;
         const { wrapperId } = this.props;
         const data = [12,5,6,6,9,10];
         const width = 600;
         const height = 300;
-        const barWidth = width / data.length;
-        const valueRange = Math.max(data) - Math.min(data, 0);
-        const heightPerPoint = height / valueRange;
-        this.width = width;
-        this.height = height;
-        this.barWidth = barWidth;
-        this.heightPerPoint = heightPerPoint;
+        const barWidth = 70; //width / data.length;
+        //const valueRange = Math.max(data) - Math.min(data, 0);
+        const heightPerPoint = 10; //height / valueRange;
 
         //const svg = d3.select("#org-chart-d3")
         const svg = d3.select(wrapperId)
@@ -34,18 +29,13 @@ class BarChart extends Component {
             .append("rect")
             .attr("x", (d, i) => i * barWidth)
             .attr("y", (d, i) => height - heightPerPoint * d)
-            .attr("width", barWidth * 0.92)
+            .attr("width", barWidth - 5) //* 0.92)
             .attr("height", (d, i) => d * heightPerPoint)
             .attr("fill", "green");
     }
 
     render() {
-        return <div id={"#" + this.props.id}>
-            width = { this.width }<br/>
-            height = { this.height }<br/>
-            barWidth = { this.barWidth }<br/>
-            heightPerPoint = { this.heightPerPoint }<br/>
-        </div>
+        return <div id={"#" + this.props.id}></div>
     }
 }
 

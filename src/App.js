@@ -9,8 +9,7 @@ const App = () => (
       <BarChart
         wrapperId={"#org-chart-d3"}
         data={[12, 5, 6, 6, 9, 10]}
-        width={700}
-        height={300}/>
+      />
     </div>
   </div>
 )
