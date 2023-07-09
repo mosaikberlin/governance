@@ -1,9 +1,9 @@
 import './App.css';
 // import OrgChart from './charts/OrgChart';
+import { BarChart } from "./charts/BarChart";
 
-// const App = () => <div>Hello World</div>;
 const App = () => (
-  <div>Hallo Welt</div>
+  <BarChart />
 )
 
 export default App;
